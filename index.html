@@ -1,32 +1,91 @@
-<div id="id"></div>
-<div id="url"></div>
-<div id="image"></div>
+<html>
+    <head>
+        <meta name="author" content="Alex Yu">
+        <title>random.dog</title>
+        <style>
+            body {
+                font-family: sans-serif;
+                margin: 0;
+                height: 100vh;
+            }
+    
+            #main-div {
+                text-align: center;
+                height: 100vh;
+                margin: 0;
+            }
+    
+            header {
+                height: 10%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+    
+            h3 {
+                padding: 20px;
+                margin: 0;
+                font-size: 3vh;
+            }
+    
+            #img-div {
+                height: 80%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+    
+            #img-div div {
+                max-height: 100%;
+            }
+    
+            #dog-img {
+                max-width: 100%;
+                max-height: 80vh;
+                box-shadow: 1px 1px 0 0 #ffffff inset, 0 2px 3px 0 #B3B3B3;
+            }
+    
 
-<script>
-function ajax_get(url, callback) {
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-      console.log('responseText:' + xmlhttp.responseText);
-      try {
-        var data = JSON.parse(xmlhttp.responseText);
-      } catch (err) {
-        console.log(err.message + " in " + xmlhttp.responseText);
-        return;
-      }
-      callback(data);
-    }
-  };
+        </style>
+    </head>
+    
+    <body>
+        <div id="main-div">
+            <header>
+                <h3>Hi Sally here is a cat &#128521;</h3>
+            </header>
+            <div id="img-div">
+                <div>
+                    <img id="dog-img" src="41bf3852-811c-470f-8e3d-8b023e5e1c0b.jpg">
+                </div>
+            </div>
+    
+    
+        <script>
+            function ajax_get(url, callback) {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        console.log('responseText:' + xmlhttp.responseText);
+                        try {
+                            var data = JSON.parse(xmlhttp.responseText);
+                        } catch (err) {
+                            console.log(err.message + " in " + xmlhttp.responseText);
+                            return;
+                        }
+                        callback(data);
+                    }
+                };
 
-  xmlhttp.open("GET", url, true);
-  xmlhttp.send();
-}
+                xmlhttp.open("GET", url, true);
+                xmlhttp.send();
+            }
 
-ajax_get('https://api.thecatapi.com/v1/images/search?size=full', function(data) {
-  document.getElementById("id").innerHTML = data[0]["id"];
-  document.getElementById("url").innerHTML = data[0]["url"];
-
-  var html = '<img src="' + data[0]["url"] + '">';
-  document.getElementById("image").innerHTML = html;
-});
-</script>
+            ajax_get('https://api.thecatapi.com/v1/images/search?size=full', function (data) {
+                var html = '<img src="' + data[0]["url"] + '">';
+                document.getElementById("dog-img").src = data[0]["url"];
+            });
+        </script>
+    
+    </body>
+</html>
