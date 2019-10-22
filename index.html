@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta name="author" content="Alex Yu">
-        <title>Random Cat</title>
+        <title>Random dog</title>
         <style>
             body {
                 font-family: sans-serif;
@@ -53,7 +53,7 @@
     <body>
         <div id="main-div">
             <header>
-                <h3>Hi Sally here is a cat &#128512;</h3>
+                <h3>Hi Sally here is a dog &#128512;</h3>
             </header>
             <div id="img-div">
                 <div>
@@ -83,8 +83,8 @@
                 xmlhttp.send();
             }
 
-            ajax_get('https://api.thecatapi.com/v1/images/search?size=full', function (data) {
-                document.getElementById("dog-img").src = data[0]["url"];
+            ajax_get('https://dog.ceo/api/breed/retriever/golden/images/random', function (data) {
+                document.getElementById("dog-img").src = data["message"];
             });
         </script>
     
